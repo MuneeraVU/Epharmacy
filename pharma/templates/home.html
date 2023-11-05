@@ -1,0 +1,50 @@
+<!-- templates/home.html. To Display homepage -->
+
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Home{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+ <h4>Welcome  {{user.username}}</h4>
+{% else %}
+<h5>Login For Convenient Shopping</h5>
+{% endif %}
+{% if category %}
+ <div>
+ <center> <h3>{{category.name}}</h3></center>
+  <img src="{{category.image.url}}" alt="{{category.name}}" style="width:1300px;height:300px;">
+ </div>
+<br>
+<div>
+
+<p>{{category.description}}</p>
+</div>
+{% else %}
+<div>
+    <a href="{medicine.get_url}}"> </a><img src="{% static 'images/walmed.jpg' %}" alt="wallpaper" style="width:1500px;height:1200px;">
+</div>
+    {% endif %}
+<br>
+
+<!-- To display all medicines in home page -->
+<div class="container">
+    <div class="row">
+        {% for medicine in medicines %}
+<div class="col-9 col-sm-12 col-md-4 col-lg-4">
+             <div class="card text-center" style="width:18rem;">
+                 <a href="{{medicine.get_url}}"><img src="{{medicine.image.url}}" class="card-img-top" style="width:80px;height:80px;" alt="{{medicine.name}}"></a>
+  <div class="card-body">
+    <h5 class="card-title">{{medicine.name}}</h5>
+    <p class="card-text">{{medicine.price}}</p>
+
+  </div>
+</div>
+</div>
+ {% endfor %}
+</div>
+</div>
+
+
+
+{% endblock %}

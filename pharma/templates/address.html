@@ -1,0 +1,15 @@
+<!-- templates/address.html. To display saved addresses of a user -->
+
+<body>
+<h1>Saved Addresses</h1>
+<ul>
+{% for a in addresses %}
+<li>
+   <h3> {{a.address}}, {{a.city}}, {{a.state}}, {{a.pin_code}}</h3>
+    <h4>Mobile:{{a.mobile}}</h4>
+</li>
+    {% empty %}
+    <li>No Saved Addresses</li>
+</ul>
+{% endfor %}
+</body>

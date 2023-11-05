@@ -1,0 +1,34 @@
+<!-- templates/search.html. To display search page -->
+
+{% extends 'base.html' %}
+{% load static %}
+{% block  content %}
+ {% if search_query %}
+<div>
+    <!-- check if there is a result in the database-->
+    {% if medicines %}
+    <div>
+        <!-- loop through search query if there is a result -->
+        {% for medicine in medicines %}
+         <div>
+             <!-- return search query -->
+
+        <h3>{{medicine.name}}</h3>
+        <a href="{{medicine.get_url}}"><img src="{{medicine.image.url}}" alt="{{medicine.name}}" style="width:200px;height:200px;"></a>
+        <h5>${{medicine.price}}</h5>
+         </div>
+        {% endfor %}
+
+       <!-- return a message if there are no results found. -->
+
+    {% else %}
+        <h3>No such products exists</h3>
+    </div>
+</div>
+{% endif %}
+<div>
+    {% else %}
+<h2>Please enter a proper  search query</h2>
+{% endif %}
+  </div>
+{% endblock %}

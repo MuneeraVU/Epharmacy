@@ -1,0 +1,22 @@
+<!-- templates/payment.html. Use test cards available in stripe for testing payment -->
+
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Checkout</title>
+</head>
+<body>
+
+    <h3> {{user.username}} Checkout</h3>
+    <form action="/checkout/" method="POST">
+        {% csrf_token %}
+        <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                data-key="pk_test_51O8JsXSE1mKdIWZKp50ApmUsoldPmBSF2TosudJVRMzlhjJEbcq7EzRFN3aVW6hIg3LwTkoTZnhejrLPN3dEJ8Cu00QlLbFSrL"
+                data-description="Purchase"
+                data-amount="{{cart_total}}"
+                data-locale="auto"></script>
+    </form>
+</body>
+<script src="https://js.stripe.com/v3/"></script>
+</html>

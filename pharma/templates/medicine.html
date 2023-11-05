@@ -1,0 +1,38 @@
+<!-- templates/medicine.html. To Display medicine page -->
+
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Medicines{% endblock %}
+{% block content %}
+<div>
+    <div class="mx-auto">
+        <p><a href="{% url 'home' %}">Home</a> | <a href="{{medicine.category.get_url}}">{{medicine.category}}</a> | {{medicine.name}}</p>
+    </div>
+</div>
+<!-- To display medicines with details -->
+<div class="container">
+    <br>
+    <div class="row">
+        <div class="col-12 col-sm-12 col-md-12 col-lg -6 text-center">
+            <div style="min-min-width:18rem">
+                <img src="{{medicine.image.url}}"  alt="{{medicine.name}}" style="width:200px;height:200px;">
+            </div>
+        </div>
+         <div class="col-12 col-sm-12 col-md-12 col-lg -6">
+             <div>
+                 {% if medicine.stock <= 0 %}
+                 <p><b>Out Of Stock</b></p>
+                 {% else %}
+                 <h3>{{medicine.name}}</h3>
+                 <p>${{medicine.price}}</p>
+
+                 <p class="text-justify">{{medicine.description}}</p>
+                 <a class="btn btn-secondary" href="{% url 'add_to_cart' medicine.id %}">AddtoCart</a>
+                 <a class="btn btn-secondary" href="{% url 'cart' %}">ViewCart</a>
+                 {% endif %}
+
+                 </div>
+</div>
+    </div>
+</div>
+{% endblock %}

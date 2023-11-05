@@ -1,0 +1,50 @@
+<!-- templates/navbar.html .To Display Navbar -->
+
+<nav class="navbar navbar-expand-lg navbar-primary bg-dark">
+  <a class="navbar-brand" href="{%url 'home' %}">Medpharma</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Categories
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown"> <!-- Dropdown items -->
+          <a class="dropdown-item" href="{% url 'home' %}">AllMedicines</a>
+          {% for c in links %}
+          <a class ="dropdown-item" href="{{c.get_url}}">{{c.name}}</a> <!-- Display available medicine  categories -->
+          {% endfor %}
+        </div>
+      </li>
+<!-- Links on navbar -->
+        <li class="nav-item">
+        <a class="nav-link " href="{%url 'profile' %}">Account</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link " href="{%url 'signup' %}">Signup</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link " href="{%url 'signin' %}">Signin</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link " href="{%url 'about' %}">About</a>
+      </li>
+
+        <li class="nav-item">
+        <a class="nav-link " href="{% url 'cart' %}">Cart</a>
+      </li>
+    </ul>
+    <!-- Search Form -->
+    <form class="d-flex" role="search" method="POST" action="{%url 'search' %}">
+      {% csrf_token %}
+
+       <input class="form-control me-2" type="search" placeholder="Search" name="search_query" required aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+  </div>
+</nav>
