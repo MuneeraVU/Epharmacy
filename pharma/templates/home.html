@@ -3,31 +3,31 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block title %}Home{% endblock %}
-
 {% block content %}
 {% if user.is_authenticated %}
  <h4>Welcome  {{user.username}}</h4>
 {% else %}
-<h5>Login For Convenient Shopping</h5>
+<h4>Login For Convenient Shopping</h4>
+  </div>
 {% endif %}
 {% if category %}
- <div>
- <center> <h3>{{category.name}}</h3></center>
-  <img src="{{category.image.url}}" alt="{{category.name}}" style="width:1300px;height:300px;">
- </div>
-<br>
-<div>
-
-<p>{{category.description}}</p>
+ <div style="display: flex; align-items:center;background-color:lightblue;">
+    <div style="flex: 1;">
+     <center> <h3>{{category.name}}</h3></center>
+  <img src="{{category.image.url}}" alt="{{category.name}}" style="width:100%">
+ </div >
+ <div style="flex: 1;">
+    <h4>{{category.description}}</h4>
 </div>
+ </div>
 {% else %}
 <div>
     <a href="{medicine.get_url}}"> </a><img src="{% static 'images/walmed.jpg' %}" alt="wallpaper" style="width:1500px;height:1200px;">
 </div>
     {% endif %}
-<br>
-
+<div  style="background-color:lightgreen;height:1500px;">
 <!-- To display all medicines in home page -->
+<center><h3>Our Available Products</h3></center>
 <div class="container">
     <div class="row">
         {% for medicine in medicines %}
@@ -37,14 +37,13 @@
   <div class="card-body">
     <h5 class="card-title">{{medicine.name}}</h5>
     <p class="card-text">{{medicine.price}}</p>
-
   </div>
-</div>
+  </div>
 </div>
  {% endfor %}
 </div>
 </div>
-
+</div>
 
 
 {% endblock %}
