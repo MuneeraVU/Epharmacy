@@ -1,15 +1,17 @@
 <!-- templates/address.html. To display saved addresses of a user -->
-
-<body>
-<h1>Saved Addresses</h1>
+{% extends 'base.html' %}
+{% block content %}
+<div style="background-color:lightyellow;">
+<h3>Saved Addresses</h3>
 <ul>
 {% for a in addresses %}
 <li>
-   <h3> {{a.address}}, {{a.city}}, {{a.state}}, {{a.pin_code}}</h3>
-    <h4>Mobile:{{a.mobile}}</h4>
+   <p> {{a.address}}, {{a.city}}, {{a.state}}, {{a.pin_code}}</p>
+    <p>Mobile:{{a.mobile}}</p>
 </li>
     {% empty %}
     <li>No Saved Addresses</li>
 </ul>
 {% endfor %}
-</body>
+</div>
+{% endblock %}
