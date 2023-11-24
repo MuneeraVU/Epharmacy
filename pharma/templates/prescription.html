@@ -1,18 +1,25 @@
 <!-- templates/prescription.html. To upload prescription -->
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Prescription Upload</title>
-</head>
-<body>
-<form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-
-    <button type="submit">Upload</button> |<a href="{%url 'home' %}">Home</a>
-
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div style="background-image: url('{% static 'images/logo.jpg' %}');height:600px;width:1500px;">
+    <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card">
+<div class="card-header"><b>Upload  Your Prescription</b></div>
+          <div class="card-body">
+            <form action="{% url 'prescription' %}" method="post" enctype="multipart/form-data">
+              {% csrf_token %}
+                {{form.as_p}}
+              <div class="form-group">
+                <input type="submit" class="btn btn-primary" value="Upload"> | <a href="{%url 'home' %}">Home</a>
+              </div>
 </form>
-</body>
-</html>
+    </div>
+                      </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}
