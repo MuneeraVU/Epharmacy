@@ -4,12 +4,15 @@
 {% load static %}
 {% block title %}Medicines{% endblock %}
 {% block content %}
+
 <div>
     <div class="mx-auto">
         <p><a href="{% url 'home' %}">Home</a> | <a href="{{medicine.category.get_url}}">{{medicine.category}}</a> | {{medicine.name}}</p>
     </div>
 </div>
+<div style="background-color:lightyellow;">
 <!-- To display medicines with details -->
+
 <div class="container">
     <br>
     <div class="row">
@@ -27,12 +30,20 @@
                  <p>${{medicine.price}}</p>
 
                  <p class="text-justify">{{medicine.description}}</p>
-                 <a class="btn btn-secondary" href="{% url 'add_to_cart' medicine.id %}">AddtoCart</a>
-                 <a class="btn btn-secondary" href="{% url 'cart' %}">ViewCart</a>
-                 {% endif %}
+                  {% endif %}
 
                  </div>
+             </div>
 </div>
-    </div>
 </div>
+</div>
+                 {% if request.user.is_authenticated %}
+                 <a class="btn btn-secondary" href="{% url 'add_to_cart' medicine.id %}">AddtoCart</a>
+                 <a class="btn btn-secondary" href="{% url 'cart' %}">ViewCart</a>
+
+
+<br>
+{% else %}
+<h6>You are not loggedin!!!Login first to explore our products<h6>
+{% endif %}
 {% endblock %}
