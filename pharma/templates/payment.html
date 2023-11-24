@@ -1,14 +1,13 @@
 <!-- templates/payment.html. Use test cards available in stripe for testing payment -->
 
-<!DOCTYPE html>
-<html>
-<head>
+{% extends 'base.html' %}
+{% block content %}
+<div  style="background-color:lightyellow; height:500px;">
+    <br>
 
-    <title>Checkout</title>
-</head>
-<body>
+    <h5> {{user.username}} checkout</h5>
+    <h6>Pay Rs.{{cart_total}}</h6>
 
-    <h3> {{user.username}} Checkout</h3>
     <form action="/checkout/" method="POST">
         {% csrf_token %}
         <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
@@ -17,6 +16,7 @@
                 data-amount="{{cart_total}}"
                 data-locale="auto"></script>
     </form>
-</body>
 <script src="https://js.stripe.com/v3/"></script>
-</html>
+</div>
+{% endblock %}
+
